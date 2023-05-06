@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MultiTracksDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Album">
+          <Key>
+            <PropertyRef Name="albumID" />
+          </Key>
+          <Property Name="albumID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dateCreation" Type="smalldatetime" Nullable="false" />
+          <Property Name="artistID" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="imageURL" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="year" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Artist">
+          <Key>
+            <PropertyRef Name="artistID" />
+          </Key>
+          <Property Name="artistID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dateCreation" Type="smalldatetime" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="biography" Type="varchar(max)" Nullable="false" />
+          <Property Name="imageURL" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="heroURL" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AssessmentSteps">
+          <Key>
+            <PropertyRef Name="stepID" />
+          </Key>
+          <Property Name="stepID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="text" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Song">
+          <Key>
+            <PropertyRef Name="songID" />
+          </Key>
+          <Property Name="songID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dateCreation" Type="smalldatetime" Nullable="false" />
+          <Property Name="albumID" Type="int" Nullable="false" />
+          <Property Name="artistID" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="bpm" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="timeSignature" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="multitracks" Type="bit" Nullable="false" />
+          <Property Name="customMix" Type="bit" Nullable="false" />
+          <Property Name="chart" Type="bit" Nullable="false" />
+          <Property Name="rehearsalMix" Type="bit" Nullable="false" />
+          <Property Name="patches" Type="bit" Nullable="false" />
+          <Property Name="songSpecificPatches" Type="bit" Nullable="false" />
+          <Property Name="proPresenter" Type="bit" Nullable="false" />
+        </EntityType>
+        <Function Name="GetAlbumDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetArtistDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAssessmentSteps" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="stepID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetSongDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="MultiTracksDBModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Album" EntityType="Self.Album" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Artist" EntityType="Self.Artist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssessmentSteps" EntityType="Self.AssessmentSteps" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Song" EntityType="Self.Song" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MultiTracksDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Album">
+          <Key>
+            <PropertyRef Name="albumID" />
+          </Key>
+          <Property Name="albumID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dateCreation" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="artistID" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="imageURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="year" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Artist">
+          <Key>
+            <PropertyRef Name="artistID" />
+          </Key>
+          <Property Name="artistID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dateCreation" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="biography" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="imageURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="heroURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AssessmentStep">
+          <Key>
+            <PropertyRef Name="stepID" />
+          </Key>
+          <Property Name="stepID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="text" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Song">
+          <Key>
+            <PropertyRef Name="songID" />
+          </Key>
+          <Property Name="songID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dateCreation" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="albumID" Type="Int32" Nullable="false" />
+          <Property Name="artistID" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="bpm" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="timeSignature" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="multitracks" Type="Boolean" Nullable="false" />
+          <Property Name="customMix" Type="Boolean" Nullable="false" />
+          <Property Name="chart" Type="Boolean" Nullable="false" />
+          <Property Name="rehearsalMix" Type="Boolean" Nullable="false" />
+          <Property Name="patches" Type="Boolean" Nullable="false" />
+          <Property Name="songSpecificPatches" Type="Boolean" Nullable="false" />
+          <Property Name="proPresenter" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MultiTracksDBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
+          <EntitySet Name="Albums" EntityType="Self.Album" />
+          <EntitySet Name="Artists" EntityType="Self.Artist" />
+          <EntitySet Name="AssessmentSteps" EntityType="Self.AssessmentStep" />
+          <EntitySet Name="Songs" EntityType="Self.Song" />
+          <FunctionImport Name="GetAlbumDetails" ReturnType="Collection(MultiTracksDBModel.GetAlbumDetails_Result)" />
+          <FunctionImport Name="GetArtistDetails" ReturnType="Collection(MultiTracksDBModel.GetArtistDetails_Result)" />
+          <FunctionImport Name="GetAssessmentSteps" ReturnType="Collection(String)">
+            <Parameter Name="stepID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetSongDetails" ReturnType="Collection(MultiTracksDBModel.GetSongDetails_Result)" />
+        </EntityContainer>
+        <ComplexType Name="GetAlbumDetails_Result">
+          <Property Type="Int32" Name="albumID" Nullable="false" />
+          <Property Type="DateTime" Name="dateCreation" Nullable="false" Precision="16" />
+          <Property Type="Int32" Name="artistID" Nullable="false" />
+          <Property Type="String" Name="title" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="imageURL" Nullable="false" MaxLength="500" />
+          <Property Type="Int32" Name="year" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetArtistDetails_Result">
+          <Property Type="Int32" Name="artistID" Nullable="false" />
+          <Property Type="DateTime" Name="dateCreation" Nullable="false" Precision="16" />
+          <Property Type="String" Name="title" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="biography" Nullable="false" />
+          <Property Type="String" Name="imageURL" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="heroURL" Nullable="false" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="GetSongDetails_Result">
+          <Property Type="Int32" Name="songID" Nullable="false" />
+          <Property Type="DateTime" Name="dateCreation" Nullable="false" Precision="16" />
+          <Property Type="Int32" Name="albumID" Nullable="false" />
+          <Property Type="Int32" Name="artistID" Nullable="false" />
+          <Property Type="String" Name="title" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="bpm" Nullable="false" Precision="6" Scale="2" />
+          <Property Type="String" Name="timeSignature" Nullable="false" MaxLength="10" />
+          <Property Type="Boolean" Name="multitracks" Nullable="false" />
+          <Property Type="Boolean" Name="customMix" Nullable="false" />
+          <Property Type="Boolean" Name="chart" Nullable="false" />
+          <Property Type="Boolean" Name="rehearsalMix" Nullable="false" />
+          <Property Type="Boolean" Name="patches" Nullable="false" />
+          <Property Type="Boolean" Name="songSpecificPatches" Nullable="false" />
+          <Property Type="Boolean" Name="proPresenter" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MultiTracksDBModelStoreContainer" CdmEntityContainer="MultiTracksDBEntities1">
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="MultiTracksDBModel.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Albums">
+            <EntityTypeMapping TypeName="MultiTracksDBModel.Album">
+              <MappingFragment StoreEntitySet="Album">
+                <ScalarProperty Name="albumID" ColumnName="albumID" />
+                <ScalarProperty Name="dateCreation" ColumnName="dateCreation" />
+                <ScalarProperty Name="artistID" ColumnName="artistID" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="imageURL" ColumnName="imageURL" />
+                <ScalarProperty Name="year" ColumnName="year" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Artists">
+            <EntityTypeMapping TypeName="MultiTracksDBModel.Artist">
+              <MappingFragment StoreEntitySet="Artist">
+                <ScalarProperty Name="artistID" ColumnName="artistID" />
+                <ScalarProperty Name="dateCreation" ColumnName="dateCreation" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="biography" ColumnName="biography" />
+                <ScalarProperty Name="imageURL" ColumnName="imageURL" />
+                <ScalarProperty Name="heroURL" ColumnName="heroURL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssessmentSteps">
+            <EntityTypeMapping TypeName="MultiTracksDBModel.AssessmentStep">
+              <MappingFragment StoreEntitySet="AssessmentSteps">
+                <ScalarProperty Name="stepID" ColumnName="stepID" />
+                <ScalarProperty Name="text" ColumnName="text" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Songs">
+            <EntityTypeMapping TypeName="MultiTracksDBModel.Song">
+              <MappingFragment StoreEntitySet="Song">
+                <ScalarProperty Name="songID" ColumnName="songID" />
+                <ScalarProperty Name="dateCreation" ColumnName="dateCreation" />
+                <ScalarProperty Name="albumID" ColumnName="albumID" />
+                <ScalarProperty Name="artistID" ColumnName="artistID" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="bpm" ColumnName="bpm" />
+                <ScalarProperty Name="timeSignature" ColumnName="timeSignature" />
+                <ScalarProperty Name="multitracks" ColumnName="multitracks" />
+                <ScalarProperty Name="customMix" ColumnName="customMix" />
+                <ScalarProperty Name="chart" ColumnName="chart" />
+                <ScalarProperty Name="rehearsalMix" ColumnName="rehearsalMix" />
+                <ScalarProperty Name="patches" ColumnName="patches" />
+                <ScalarProperty Name="songSpecificPatches" ColumnName="songSpecificPatches" />
+                <ScalarProperty Name="proPresenter" ColumnName="proPresenter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetAlbumDetails" FunctionName="MultiTracksDBModel.Store.GetAlbumDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MultiTracksDBModel.GetAlbumDetails_Result">
+                <ScalarProperty Name="albumID" ColumnName="albumID" />
+                <ScalarProperty Name="dateCreation" ColumnName="dateCreation" />
+                <ScalarProperty Name="artistID" ColumnName="artistID" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="imageURL" ColumnName="imageURL" />
+                <ScalarProperty Name="year" ColumnName="year" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetArtistDetails" FunctionName="MultiTracksDBModel.Store.GetArtistDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MultiTracksDBModel.GetArtistDetails_Result">
+                <ScalarProperty Name="artistID" ColumnName="artistID" />
+                <ScalarProperty Name="dateCreation" ColumnName="dateCreation" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="biography" ColumnName="biography" />
+                <ScalarProperty Name="imageURL" ColumnName="imageURL" />
+                <ScalarProperty Name="heroURL" ColumnName="heroURL" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAssessmentSteps" FunctionName="MultiTracksDBModel.Store.GetAssessmentSteps" />
+          <FunctionImportMapping FunctionImportName="GetSongDetails" FunctionName="MultiTracksDBModel.Store.GetSongDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MultiTracksDBModel.GetSongDetails_Result">
+                <ScalarProperty Name="songID" ColumnName="songID" />
+                <ScalarProperty Name="dateCreation" ColumnName="dateCreation" />
+                <ScalarProperty Name="albumID" ColumnName="albumID" />
+                <ScalarProperty Name="artistID" ColumnName="artistID" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="bpm" ColumnName="bpm" />
+                <ScalarProperty Name="timeSignature" ColumnName="timeSignature" />
+                <ScalarProperty Name="multitracks" ColumnName="multitracks" />
+                <ScalarProperty Name="customMix" ColumnName="customMix" />
+                <ScalarProperty Name="chart" ColumnName="chart" />
+                <ScalarProperty Name="rehearsalMix" ColumnName="rehearsalMix" />
+                <ScalarProperty Name="patches" ColumnName="patches" />
+                <ScalarProperty Name="songSpecificPatches" ColumnName="songSpecificPatches" />
+                <ScalarProperty Name="proPresenter" ColumnName="proPresenter" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
